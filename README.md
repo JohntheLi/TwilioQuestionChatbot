@@ -46,7 +46,7 @@ exports.handler = function(context, event, callback) {
     });
 };
 ```
-This code takes the question and POSTS it to a Firebase database in JSON format. Overall, Twilio flows are very easy to create with the help of widgets in the Studio.
+This code takes the question and POSTS it to a Firebase database in JSON format. With the Twilio Studio widgets, it becomes very easy to build a flow for the question to be retreived and sent to the database.
 
 ## Firebase:
 The Firebase Realtime Database API is used to store the questions that were sent to the Twilio Chatbot. Both the question and the phone number of the student is recorded in the database.
