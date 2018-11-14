@@ -1,0 +1,318 @@
+EECS 16A Designing Information Devices and Systems I
+Fall 2018 Lecture Notes Note 7
+7.1 Vector Spaces
+A vector space (V, F) is a set of vectors V, a set of scalars F, and two operators that satisfy the following
+properties:
+• Vector Addition
+– Associative: ~u+ (~v+~w) = (~u+~v) +~w for any~v,~u,~w ∈ V.
+– Commutative: ~u+~v =~v+~u for any~v,~u ∈ V.
+– Additive Identity: There exists an additive identity~0 ∈ V such that~v+~0 =~v for any~v ∈ V.
+– Additive Inverse: For any ~v ∈ V, there exists −~v ∈ V such that ~v + (−~v) =~0. We call −~v the
+additive inverse of~v.
+– Closure under vector addition: For any two vectors~v,~u ∈ V, their sum~v+~u must also be in V.
+• Scalar Multiplication
+– Associative: α(β~v) = (αβ)~v for any~v ∈ V, α,β ∈ F.
+– Multiplicative Identity: There exists 1 ∈ F where 1 ·~v =~v for any ~v ∈ F. We call 1 the multi￾plicative identity.
+– Distributive in vector addition: α (~u+~v) = α~u+α~v for any α ∈ F and ~u,~v ∈ V.
+– Distributive in scalar addition: (α +β)~v = α~v+β~v for any α,β ∈ F and~v ∈ V.
+– Closure under scalar multiplication: For any vector~v ∈ V and scalar α ∈ F, the product α~v must
+also be in V.
+You have already seen vector spaces before! For example, (R
+n
+,R) is the vector space of all n-dimensional
+vectors. With the definitions of vector addition and scalar multiplication defined in the previous notes you
+could show that it satisfies all the properties above. In fact, matrices also are a vector space (R
+n×m,R) since
+they fulfill all of the properties above as well – but in this class we will generally only deal with vector
+spaces containing vectors in R
+n or C
+n
+.
+Additional Resources For more on vector spaces, read Strang pages 123 - 125 and try Problem
+Set 3.1.
+In Schaum’s, read pages 112-114 and try problems 4.1, 4.2, and 4.71 to 4.76. Extra: Read and
+Understand Polynomial Spaces, Spaces of Arbitrary “Field.”
+EECS 16A, Fall 2018, Note 7 17.1.1 Bases
+We can use a series of vectors to define a vector space. We call this set of vectors a basis, which we define
+formally below:
+Definition 7.1 (Basis):
+Given a vector space (V,F), a set of vectors {~v1,~v2,...,~vn} is a basis of the vector space if it satisfies the
+following two properties:
+• ~v1,~v2,...,~vn are linearly independent vectors
+• For any vector~v ∈ V, there exist scalars α1,α2,...,αn ∈ F such that~v = α1~v1 +α2~v2 +...+αn~vn.
+Intuitively, a basis of a vector space is the minimum set of vectors needed to represent all vectors in the
+vector space. If a set of vectors is linearly dependent and “spans” the vector space, it is still not a basis
+because we can remove at least one vector from the set and the resulting set will still span the vector space.
+The next natural question to ask is: Given a vector space, is the basis unique? Intuitively, it is not because
+multiplying one of the vectors in a given basis by a nonzero scalar will not affect the linear independence or
+span of the vectors. We could alternatively construct another basis by replacing one of the vectors with the
+sum of itself and any other vector in the set.
+To illustrate this mathematically, suppose {v~1, ~v2,..., ~vn} is a basis for the vector space we are considering.
+Then
+{αv~1, ~v2,..., ~vn} (1)
+where α 6= 0 is also a basis because, just as we’ve seen in Gaussian elimination row operations, multiplying
+a row by a nonzero constant does not change the linear independence or dependence of the rows. We
+can generalize this to say that multiplying a vector by a nonzero scalar also does not change the linear
+independence of the set of vectors. In addition, we know that
+span({v~1, ~v2,..., ~vn}) = span({αv~1, ~v2,..., ~vn}). (2)
+because any vector in span({v~1, ~v2,..., ~vn}) can be created as a linear combination of the set {αv~1, ~v2,..., ~vn}
+by dividing the scale factor on v~1 by α. We can use a similar argument to show that {v~1 +v~2, ~v2,..., ~vn} is
+also basis for the same vector space.
+Example 7.1 (Vector space (R
+3
+,R)): Let’s try to find a basis for the vector space (R
+3
+,R). We want to find
+a set of vectors that can represent any vector of the form
+
+
+a
+b
+c
+
+ where a,b, c ∈ R. One basis could be the set
+of standard unit vectors:
+
+
+
+
+
+1
+0
+0
+
+,
+
+
+0
+1
+0
+
+,
+
+
+0
+0
+1
+
+
+
+
+
+EECS 16A, Fall 2018, Note 7 2The set of vectors is linearly independent and we can represent any vector
+
+
+a
+b
+c
+
+ in the vector space using the
+three vectors:
+
+
+a
+b
+c
+
+ = a
+
+
+1
+0
+0
+
++b
+
+
+0
+1
+0
+
++c
+
+
+0
+0
+1
+
+. (3)
+Alternatively, we could show that
+
+
+
+
+
+1
+1
+0
+
+,
+
+
+0
+1
+1
+
+,
+
+
+1
+0
+1
+
+
+
+
+
+is a basis for the vector space.
+Now that we have defined bases, we can define the dimension of a vector space.
+Definition 7.2 (Dimension): The dimension of a vector space is the number of basis vectors.
+Since each basis vector can be scaled by one coefficient, the dimension of a space as the fewest number of
+parameters needed to describe an element or member of that space. The dimension can also be thought of as
+the degrees of freedom of your space – that is, the number of parameters that can be varied when describing
+a member of that space.
+Example 7.2 (Dimension of (R
+3
+,R)): Previously, we identified a basis
+
+
+
+
+
+1
+0
+0
+
+,
+
+
+0
+1
+0
+
+,
+
+
+0
+0
+1
+
+
+
+
+
+for the vector space (R
+3
+,R). The basis consists of three vectors, so the dimension of the vector space is
+three.
+Note that a vector space can have many bases, but each basis must have the same number of vectors.
+We will not prove this rigorously, but let’s illustrate our arguments. Suppose a basis for the vector space
+we’re considering has n vectors. This means that the minimum number of vectors we can use to represent
+all vectors in the vector space is n, because the vectors in the basis would not be linearly independent if
+the vector space could be represented with fewer vectors. Then we can show that any set with less than n
+vectors cannot be a basis because it does not have enough vectors to span the vector space — there would
+be some vectors in the vector space that cannot be expressed as a linear combination of the vectors in the
+set. In addition, we can show that any set with more than n vectors must be linearly dependent and therefore
+cannot be a basis. Combining the two arguments, we have that any other set of vectors that forms a basis for
+the vector space must have exactly n vectors.
+We introduced quite a few terms in this lecture note, and we’ll see how we can connect these with our
+understanding of matrices in the next lecture note!
+EECS 16A, Fall 2018, Note 7 3Additional Resources For more on bases, read Strang pages 167 - 171 and try Problem Set 3.4.
+Extra: Read Sections on Matrix and Function Space.
+In Schaum’s, read pages 124-126 and pages 127-129. Try Problems 4.24 to 4.28, 4.97 to 4.103,
+and 4.33 to 4.40.
+7.2 Practice Problems
+These practice problems are also available in an interactive form on the course website.
+1. True or False: −3
+1
+
+,
+
+−1
+0
+
+,
+
+5
+2
+ spans R
+2
+.
+2. True or False:
+
+
+
+
+
+1
+2
+3
+
+,
+
+
+5
+−2
+1
+
+,
+
+
+−3
+6
+5
+
+
+
+
+
+is a basis for R
+3
+.
+3. The following vectors span R
+3
+:
+~x1 =
+
+
+1
+2
+2
+
+,~x2 =
+
+
+2
+5
+4
+
+,~x3 =
+
+
+1
+3
+2
+
+,~x4 =
+
+
+2
+7
+4
+
+,~x5 =
+
+
+1
+1
+0
+
+
+Which vectors of this set form a basis for R
+3
+?
+(a) ~x1,~x2,~x3,~x4,~x5
+(b) ~x1,~x3,~x5
+(c) ~x1,~x2,~x4
+(d) ~x1,~x3,~x4,~x5
+EECS 16A, Fall 2018, Note 7 4
