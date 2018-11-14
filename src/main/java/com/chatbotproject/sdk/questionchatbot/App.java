@@ -355,14 +355,14 @@ public class App {
 	
 	//Twilio SMS Function
 	public static void text(String text, String to_number) {
-    	final String ACCOUNT_SID = "ACf6246049ba2698189620fbb3b3a90a1f";
-        final String AUTH_TOKEN = "bc5fe5c36633abd8021c42df8ab92000";
+    	final String ACCOUNT_SID = "";
+        final String AUTH_TOKEN = "";
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         System.out.println( "Hello World!" );
         
         Message message = Message.creator(
         	    new PhoneNumber(to_number),  // To number
-        	    new PhoneNumber("+19032075736"),  // From number
+        	    new PhoneNumber("+1"),  // From number
         	    text                    			// SMS body
         	).create();
     }
